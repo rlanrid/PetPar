@@ -1,0 +1,174 @@
+#homePage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .filter__wrap {
+        width: 100%;
+        height: 75px;
+        background-color: var(--white);
+        border-radius: 20px;
+        margin-bottom: 25px;
+
+        ul {
+            padding: 20px 50px;
+            display: flex;
+        }
+
+        li {
+            width: 105px;
+
+            a {
+                display: block;
+                padding: 0.4rem 1rem;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+                border-radius: 20px;
+                margin-right: 1rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-align: center;
+
+                &.active {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    .contents__wrap {
+        width: 100%;
+        height: calc(100% - 100px);
+        background-color: var(--white);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .contents__container {
+            width: 50%;
+            margin-bottom: 50px;
+
+            .contents__top {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                margin: 15px 0;
+
+                .shelter {
+                    font-size: 1.25rem;
+                    color: var(--black300);
+                    line-height: 1;
+                }
+
+                .total__like {
+                    font-size: 0.8rem;
+                    color: var(--black300);
+                }
+
+                .image {
+                    width: 100%;
+                    margin-top: 15px;
+
+                    .img {
+                        height: 360px;
+                        border-radius: 10px;
+                        background-color: #ccc;
+                    }
+                }
+            }
+
+            .contents__bottom {
+                .info {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 15px;
+
+                    .left {
+                        display: flex;
+                        align-items: center;
+
+                        .profile {
+                            width: 35px;
+                            height: 35px;
+                            background-color: #ccc;
+                            border-radius: 50%;
+
+                        }
+
+                        .name {
+                            position: relative;
+                            margin-left: 5px;
+
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                width: 3px;
+                                height: 3px;
+                                border-radius: 50%;
+                                left: 108%;
+                                top: 45%;
+                                background-color: var(--black);
+                            }
+                        }
+
+                        .date {
+                            margin-left: 10px;
+                            color: var(--black400);
+                            font-size: 0.8rem;
+                        }
+
+                        .call {
+                            margin-left: 5px;
+                        }
+                    }
+
+                    .right {
+                        display: flex;
+                        align-items: center;
+
+                        >div {
+                            margin-left: 13px;
+
+                            svg {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+
+                .board {
+                    .title {
+                        font-size: 1.5rem;
+                    }
+
+                    .contents {
+                        font-size: 1rem;
+                        color: var(--black300);
+                        margin-bottom: 15px;
+                        @include line-two;
+                    }
+
+                    .all {
+                        font-size: 1rem;
+                        color: var(--black300);
+                        margin-bottom: 15px;
+                    }
+
+                    .more {
+                        &.hide {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
