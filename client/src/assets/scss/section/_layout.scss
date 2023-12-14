@@ -7,7 +7,7 @@ body {
 main {
     background-color: #fff;
     height: calc(100vh - 60px);
-    padding: 10px 30px 30px 30px;
+    padding: 10px 30px 30px;
     border-radius: 30px;
 }
 
@@ -22,6 +22,10 @@ main {
     width: calc(100% - 540px) !important;
     border-radius: 20px;
     background-color: #F3F4F5;
+
+    @media(max-width:1280px) {
+        width: 100% !important;
+    }
 }
 
 .pages {
@@ -33,6 +37,9 @@ main {
     border-radius: 20px;
     min-width: 270px;
 
+    @media(max-width:1020px) {
+        display: none;
+    }
 }
 
 
@@ -41,6 +48,10 @@ main {
     padding: 20px;
     border-radius: 20px;
     min-width: 270px;
+
+    @media(max-width:1280px) {
+        display: none;
+    }
 
 }
 
