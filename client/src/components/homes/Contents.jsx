@@ -18,8 +18,6 @@ const Contents = () => {
     const [liked, setLiked] = useState({});
     const [loading, setLoading] = useState(true);
 
-
-
     const handleLikeClick = (key) => {
         setLiked(prevLiked => {
             const isCurrentlyLiked = !prevLiked[key];
@@ -120,10 +118,6 @@ const Contents = () => {
     useEffect(() => {
         fetchInfo('all');
     }, [])
-
-
-
-
 
     return (
         <>
