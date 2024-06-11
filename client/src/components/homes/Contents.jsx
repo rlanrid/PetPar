@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import heartFilled from '../../assets/img/다운로드.png';
@@ -14,9 +14,20 @@ const Contents = () => {
     const [petItems, setPetItems] = useState([]);
     const [expandedItems, setExpandedItems] = useState({});
     const [activeCategory, setActiveCategory] = useState('all');
+    const [pageNo, setPageNo] = useState(1);
     const [likes, setLikes] = useState({});
     const [liked, setLiked] = useState({});
     const [loading, setLoading] = useState(true);
+    const containerRef = useRef(null);
+
+    const getCurrentData = () => {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}${month}${day}`;
+    }
 
     const handleLikeClick = (key) => {
         setLiked(prevLiked => {
@@ -57,7 +68,6 @@ const Contents = () => {
         }
     };
 
-
     const toggleExpand = (index) => {
         setExpandedItems((prevState) => ({
             ...prevState,
@@ -65,7 +75,7 @@ const Contents = () => {
         }));
     }
 
-    const fetchInfo = async (category) => {
+    const fetchInfo = async (category, pageNo) => {
         setLoading(true);
         let url = 'https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic';
         const apiKey = process.env.REACT_APP_PET_API_KEY;
@@ -91,8 +101,8 @@ const Contents = () => {
                 params: {
                     serviceKey: apiKey,
                     bgnde: "20230101",
-                    endde: "20230116",
-                    pageNo: "1",
+                    endde: getCurrentData(),
+                    pageNo: pageNo,
                     numOfRows: "20",
                     _type: "json",
                 }
@@ -100,12 +110,25 @@ const Contents = () => {
 
             let items = res.data.response.body.items.item;
 
-            setPetItems(items);
+            setPetItems(prevItems => [...prevItems, ...items]);
+
+            const container = containerRef.current;
+            if (container) {
+                container.scrollTop = container.scrollHeight - container.clientHeight;
+            }
         } catch (err) {
             console.log(err);
         } finally {
             setLoading(false);
         }
+    }
+
+    const fetchNextInfo = () => {
+        setPageNo(prevPageNo => {
+            const nextPageNo = prevPageNo + 1;
+            fetchInfo(activeCategory, nextPageNo);
+            return nextPageNo;
+        })
     }
 
     const formatDate = (dateStr) => {
@@ -116,8 +139,8 @@ const Contents = () => {
     };
 
     useEffect(() => {
-        fetchInfo('all');
-    }, [])
+        fetchInfo('all', pageNo);
+    }, [pageNo])
 
     return (
         <>
@@ -129,7 +152,7 @@ const Contents = () => {
                 </ul>
             </div>
 
-            <div className='contents__wrap'>
+            <div className='contents__wrap' ref={containerRef}>
                 {loading ? (
                     <div className="load">
                         <DogLoader />
@@ -190,6 +213,9 @@ const Contents = () => {
                                     </div>
                                 </div>
                             ))
+                        }
+                        {
+                            <button onClick={() => fetchNextInfo()}>더보기</button>
                         }
                     </>
                 )}

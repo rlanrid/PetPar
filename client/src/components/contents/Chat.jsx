@@ -51,7 +51,7 @@ const Chat = () => {
             <h2>실시간 채팅</h2>
             <div className='chating__wrap'>
                 <div className='chating'>
-                    {chat.map((msg, index) => (
+                    {/* {chat.map((msg, index) => (
                         <div key={index} className={`chating__box ${msg.username === user.displayName ? 'my-message' : 'other-message'}`}>
                             <div className={`chating__author ${msg.username === user.displayName ? 'my-message' : 'other-message'}`}>
                                 <span className="author__photo"><img src={`${msg.photoURL}`} alt="" /></span>
@@ -61,7 +61,7 @@ const Chat = () => {
                                 {msg.message}
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             </div>
             {user.displayName ? (
