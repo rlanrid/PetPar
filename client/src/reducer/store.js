@@ -11,5 +11,4 @@ export default configureStore({
         getDefaultMiddleware({
             serializableCheck: false,
         }),
-
 });

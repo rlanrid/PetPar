@@ -50,7 +50,6 @@ const Login = () => {
                             id='id'
                             name='youId'
                             placeholder='ID'
-
                             autoComplete='off'
                             required
                             value={email}

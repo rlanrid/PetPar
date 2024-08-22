@@ -124,11 +124,11 @@ router.post("/delete", (req, res) => {
         .deleteOne({ postNum: Number(req.body.postNum) })
         .exec()
         .then(() => {
-            res.status(200).json({ success: true })
+            res.status(200).json({ success: true });
         })
         .catch((err) => {
             console.log(err)
-            res.status(400).json({ success: false })
+            res.status(400).json({ success: false });
         })
 })
 

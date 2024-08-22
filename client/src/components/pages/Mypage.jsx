@@ -124,7 +124,7 @@ const Mypage = () => {
 
     return (
         <div className='mypage pages'>
-            < form name='login' method='post' >
+            <form name='login' method='post'>
                 <legend className="blind">회원 정보 수정 영역</legend>
 
                 <div className="input_style imgupload">
